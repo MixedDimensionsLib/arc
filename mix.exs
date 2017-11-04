@@ -1,12 +1,16 @@
 defmodule Arc.Mixfile do
   use Mix.Project
 
-  @version "0.6.0"
+  @version "0.8.0"
 
   def project do
     [app: :arc,
      version: @version,
+<<<<<<< HEAD
      elixir: "~> 1.0",
+=======
+     elixir: "~> 1.4",
+>>>>>>> fee334716dc875a63f58bbcebbaa9c6c92544f86
      deps: deps(),
 
     # Hex
@@ -41,14 +45,20 @@ defmodule Arc.Mixfile do
 
   defp deps do
     [
+<<<<<<< HEAD
       {:httpoison, "~> 0.8"}, # Required for downloading remote files
       {:ex_aws, git: "git://github.com/MixedDimensionsLib/ex_aws.git"},
       {:mock, "~> 0.1.1", only: :test},
+=======
+      {:httpoison, "~> 0.11"}, # Required for downloading remote files
+      {:ex_aws, "~> 1.1", optional: true},
+      {:mock, "~> 0.1", only: :test},
+>>>>>>> fee334716dc875a63f58bbcebbaa9c6c92544f86
       {:ex_doc, "~> 0.14", only: :dev},
 
       # If using Amazon S3:
-      {:poison, "~> 2.0 or ~> 3.0", optional: true},
-      {:sweet_xml, "~> 0.5", optional: true}
+      {:poison, "~> 2.2 or ~> 3.1", optional: true},
+      {:sweet_xml, "~> 0.6", optional: true}
     ]
   end
 end

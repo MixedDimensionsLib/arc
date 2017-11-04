@@ -14,13 +14,13 @@ Add the latest stable release to your `mix.exs` file, along with the required de
 ```elixir
 defp deps do
   [
-    arc: "~> 0.6.0",
+    arc: "~> 0.8.0",
 
     # If using Amazon S3:
-    ex_aws: "~> 1.0.0-rc3",
-    hackney: "~> 1.5",
-    poison: "~> 2.0",
-    sweet_xml: "~> 0.5"
+    ex_aws: "~> 1.1",
+    hackney: "~> 1.6",
+    poison: "~> 3.1",
+    sweet_xml: "~> 0.6"
   ]
 end
 ```
@@ -49,7 +49,7 @@ Arc expects certain properties to be configured at the application level:
 ```elixir
 config :arc,
   storage: Arc.Storage.S3, # or Arc.Storage.Local
-  bucket: {:system, "AWS_S3_BUCKET"}, # if using Amazon S3
+  bucket: {:system, "AWS_S3_BUCKET"} # if using Amazon S3
 ```
 
 Along with any configuration necessary for ExAws.
@@ -59,6 +59,7 @@ Arc ships with integrations for Local Storage and S3.  Alternative storage provi
 
 * **Rackspace** - https://github.com/lokalebasen/arc_rackspace
 * **Manta** - https://github.com/onyxrev/arc_manta
+* **Google Cloud Storage** - https://github.com/martide/arc_gcs
 
 ### Usage with Ecto
 
@@ -75,7 +76,7 @@ This definition module contains relevant functions to determine:
   * Optional transformations of the uploaded file
   * Where to put your files (the storage directory)
   * What to name your files
-  * How to secure your files (private? Or publically accessible?)
+  * How to secure your files (private? Or publicly accessible?)
   * Default placeholders
 
 To start off, generate an attachment definition:
@@ -393,7 +394,8 @@ Examples:
 ```elixir
 # To retain the original filename, but prefix the version and user id:
 def filename(version, {file, scope}) do
-  "#{scope.id}_#{version}_#{file.file_name}"
+  file_name = Path.basename(file.file_name, Path.extname(file.file_name))
+  "#{scope.id}_#{version}_#{file_name}"
 end
 
 # To make the destination file the same as the version:

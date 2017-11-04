@@ -2,12 +2,18 @@ defmodule Mix.Tasks.Arc do
   defmodule G do
     use Mix.Task
     import Mix.Generator
-    import Mix.Utils, only: [camelize: 1, underscore: 1]
+    import Macro, only: [camelize: 1, underscore: 1]
 
     @shortdoc "For Arc definition generation code"
 
     @moduledoc """
-      A task for generating arc uploader modules.
+    A task for generating arc uploader modules.
+
+    The generated attachment definition is stored in `web/uploaders`.
+
+    ## Example
+
+        mix arc.g avatar   # creates web/uploaders/avatar.ex
     """
 
     def run([model_name]) do
