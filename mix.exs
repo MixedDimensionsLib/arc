@@ -42,7 +42,8 @@ defmodule Arc.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.8"}, # Required for downloading remote files
-      {:ex_aws, git: "git://github.com/MixedDimensionsLib/ex_aws.git"},
+      {:ex_aws, "~> 1.1"},
+      {:ex_aws_s3, git: "git://github.com/MixedDimensionsLib/ex_aws_s3.git"},
       {:mock, "~> 0.1.1", only: :test},
       {:ex_doc, "~> 0.14", only: :dev},
 
