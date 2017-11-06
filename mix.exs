@@ -6,11 +6,7 @@ defmodule Arc.Mixfile do
   def project do
     [app: :arc,
      version: @version,
-<<<<<<< HEAD
-     elixir: "~> 1.0",
-=======
      elixir: "~> 1.4",
->>>>>>> fee334716dc875a63f58bbcebbaa9c6c92544f86
      deps: deps(),
 
     # Hex
