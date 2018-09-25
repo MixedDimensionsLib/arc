@@ -75,11 +75,10 @@ defmodule Arc.Actions.Store do
 
         case Path.basename(file.path) == file_name || Path.dirname(file.path) != "/tmp" do
           true ->
-            file |> IO.inspect(label: "YEEEEEEEES")
+            nil
 
           false ->
             File.rm(file.path)
-            file |> IO.inspect(label: "NOOOOOOOOO")
         end
 
         res
